@@ -1,0 +1,49 @@
+﻿{% load staticfiles %}
+<html>
+    <head>
+        <title>Allegropti</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		{% include "search_mode/styles.html" %}
+    </head>
+    <body>
+		{% include "search_mode/navbar.html" %}
+		
+		<!-- First Container -->
+		<div id="div_cel" class="container-fluid bg-1 text-center">
+		  <h3 class="margin">Cel serwisu</h3>
+		  <img src="{% static 'images/code_photo.jpg' %}" class="img-responsive img-circle margin" style="display:inline" width="350" height="350">
+		  <h4>Przy pomocy naszego algorytmu, dowiesz się kiedy i za jaką kwotę powienieneś wystawić swój przedmiot na Allegro!</h4>
+		</div>
+		
+		<!-- Second Container -->
+		<div id="div_opti" class="container-fluid bg-2 text-center">
+		  <h3 class="margin">Sprawdź przedmiot</h3>
+		  <div class="row">
+			<div class="col-sm-3">
+			
+			</div>
+			<div class="col-sm-6"> 
+				<form action="/search/" method="post">
+					{% csrf_token %}
+					<input type="text" class="form-control" name="search_item" placeholder="Wprowadź nazwę przedmiotu..">
+					<br>
+					<input class="btn btn-default" type="submit" value="Wyszukaj" />
+				</form>
+			</div>
+			<div class="col-sm-3"></div>
+		  </div>
+		</div>
+		
+		<!-- Third Container (Grid) -->
+		<div id="div_newsy" class="container-fluid bg-3 text-center">    
+		  <h3 class="margin">Ostatnie newsy</h3><br>
+		  <div class="row">
+			{% include "search_mode/post_list_top.html" %}
+		  </div>
+		</div>
+			
+		{% include "search_mode/footer.html" %}
+		
+    </body>
+</html>

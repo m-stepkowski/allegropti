@@ -1,0 +1,28 @@
+{% load staticfiles %}
+
+<html>
+	<head>
+        <title>Allegropti</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		{% include "search_mode/styles.html" %}
+    </head>
+	<body>
+		{% include "search_mode/navbar.html" %}
+
+		<!-- Results Container -->
+		<div id="div_search_results" class="container-fluid bg-2 text-center">
+		  <h3 class="margin">Wynik wyszukiwania:</h3>
+		  <div class="row">
+			<div class="col-sm-3">
+			
+			</div>
+			<div class="col-sm-6"> 
+				{{results|safe}}
+			</div>
+			<div class="col-sm-3"></div>
+		  </div>
+		</div>
+		
+	</body>
+</html>

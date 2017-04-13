@@ -1,0 +1,9 @@
+﻿{% block wpisy %}
+	{% for post in posts %}
+		<div class="col-sm-4">
+			<h4><a href="post/{{post.id}}">{{ post.title }}</a></h4>
+			<p>{{ post.text|linebreaksbr }}</p>
+		</div>
+	{% endfor %}
+{% endblock wpisy %}
+		
