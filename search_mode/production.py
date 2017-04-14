@@ -51,10 +51,7 @@ class Allegro:
         tab['priceValue'] = tab['priceValue'].astype(float)
 
         # Pobranie informacji o sredniej cenie produktu w zaleznosci od typu ceny
-        srednia = tab[['priceType','priceValue']].groupby('priceType').mean()
-        
-        # Zaokraglenie wartosci sredniej
-        srednia['priceValue'] = round(srednia['priceValue'], 2)
+        srednia = tab[['priceType','priceValue']].groupby('priceType').mean().round(decimals=2)
         
         # Utworzenie html z tabela ze srednimi
         html = srednia.to_html()

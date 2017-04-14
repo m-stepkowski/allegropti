@@ -2,3 +2,9 @@
 __pycache__
 db.sqlite3
 .DS_Store
+.ebextensions
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
