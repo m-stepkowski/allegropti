@@ -77,12 +77,12 @@ WSGI_APPLICATION = 'allegropti.wsgi.application'
 if 'RDS_HOSTNAME' in os.environ:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': os.environ['RDS_DB_NAME'],
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'allegropti',
             'USER': os.environ['RDS_USERNAME'],
             'PASSWORD': os.environ['RDS_PASSWORD'],
-            'HOST': os.environ['RDS_HOSTNAME'],
-            'PORT': os.environ['RDS_PORT'],
+            'HOST': 'allegropti.cdkugshpf43r.eu-central-1.rds.amazonaws.com',
+            'PORT': '5432',
         }
     }
 else:
