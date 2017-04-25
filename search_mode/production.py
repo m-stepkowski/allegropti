@@ -54,7 +54,7 @@ class Allegro:
         srednia = tab[['priceType','priceValue']].groupby('priceType').mean().round(decimals=2)
         
         # Utworzenie html z tabela ze srednimi
-        html = srednia.to_html()
+        html = srednia.to_html(classes='table-hover')
 
         # Zwracam html do pokazania na stronie
         return html  

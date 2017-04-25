@@ -10,15 +10,21 @@
 		  </button>
 		  <a class="navbar-brand">Allegropti</a>
 		</div>
-		{% if hp == 1 %}
+
+		
 		<div class="collapse navbar-collapse" id="myNavbar">
 		  <ul class="nav navbar-nav navbar-right">
+		  {% if hp == 1 %}
 			<li><a href="#div_cel">Cel</a></li>
 			<li><a href="#div_opti">Algorytm</a></li>
 			<li><a href="#div_newsy">Newsy</a></li>
+		  {% endif %}
+		  {% if hp != 1 %}
+		  	<li><a href="http://{{ request.META.HTTP_HOST }}">Powrót do strony głównej</a></li>
+		  {% endif %}
 		  </ul>
 		</div>
-		{% endif %}
+
 	  </div>
 	</nav>
 		
