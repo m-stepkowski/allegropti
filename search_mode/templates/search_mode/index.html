@@ -28,7 +28,9 @@
 					{% csrf_token %}
 					<input type="text" class="form-control" name="search_item" placeholder="Wprowadź nazwę przedmiotu..">
 					<br>
-					<input id="but_item_search" class="btn btn-default"  value="Wyszukaj" />
+					<div id="div_but_item_search">
+						<input id="but_item_search" class="btn btn-default" onclick="form_post(this);" value="Wyszukaj" />
+					</div>
 				</form>
 			</div>
 			<div class="col-sm-3"></div>
