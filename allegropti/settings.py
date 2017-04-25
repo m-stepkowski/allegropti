@@ -79,8 +79,10 @@ if 'RDS_HOSTNAME' in os.environ or 'SSH_CONNECTION' in os.environ:
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'allegropti',
-            'USER': os.environ['RDS_USERNAME'],
-            'PASSWORD': os.environ['RDS_PASSWORD'],
+            if 'RDS_USERNAME' in os.environ:
+            	'USER': os.environ['RDS_USERNAME'],
+            if 'RDS_PASSWORD' in os.environ:
+            	'PASSWORD': os.environ['RDS_PASSWORD'],
             'HOST': 'allegropti.cdkugshpf43r.eu-central-1.rds.amazonaws.com',
             'PORT': '5432',
         }
