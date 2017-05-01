@@ -1,0 +1,28 @@
+{% load staticfiles %}
+
+<html>
+	<head>
+        <title>Allegropti</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		{% include "search_mode/styles.html" %}
+    </head>
+	<body>
+		{% include "search_mode/navbar.html" %}
+
+		<!-- Results Container -->
+		<div id="div_post_detail" class="container-fluid bg-2 text-center">
+		  <h3 class="margin">{{post.title}}:</h3>
+		  <div class="row">
+			<div class="col-sm-3">
+				<center>{{post.published_date}}</center>
+			</div>
+			<div class="col-sm-6"> 
+				<center>{{post.text}}</center>
+			</div>
+			<div class="col-sm-3"></div>
+		  </div>
+		</div>
+		
+	</body>
+</html>
