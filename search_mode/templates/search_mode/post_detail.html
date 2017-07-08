@@ -1,28 +1,30 @@
-{% load staticfiles %}
-
-<html>
-	<head>
-        <title>Allegropti</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		{% include "search_mode/styles.html" %}
-    </head>
+{% load staticfiles i18n %}
+<!DOCTYPE html>
+	{% include "search_mode/page_header.html" %}
 	<body>
 		{% include "search_mode/navbar.html" %}
 
-		<!-- Results Container -->
-		<div id="div_post_detail" class="container-fluid bg-2 text-center">
-		  <h3 class="margin">{{post.title}}:</h3>
-		  <div class="row">
-			<div class="col-sm-3">
-				<center>{{post.published_date}}</center>
+		<section id="main" class="wrapper">
+			<div class="inner">
+				<header class="align-center">
+					<h2>{{post.title}}</h2>
+					<p>{{post.published_date|date:'Y-m-d H:i'}}</p>
+				</header>
+
+				<!-- Content -->
+				<p>{{post.text|linebreaksbr}}</p>
+
+				{% if user.is_authenticated %}
+					{% if user.is_superuser %}
+					<div class="inner align-center">
+						<a href="{% url 'admin:search_mode_post_change' post.id %}" class="button small">Edytuj</a>
+						<a href="{% url 'admin:search_mode_post_delete' post.id %}" class="button small">Usuń</a>
+					</div>
+					{% endif %}
+			    {% endif %}
+				
 			</div>
-			<div class="col-sm-6"> 
-				<center>{{post.text}}</center>
-			</div>
-			<div class="col-sm-3"></div>
-		  </div>
-		</div>
+		</section>
 		
 	</body>
 </html>

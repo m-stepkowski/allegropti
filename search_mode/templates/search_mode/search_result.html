@@ -1,28 +1,20 @@
-{% load staticfiles %}
-
-<html>
-	<head>
-        <title>Allegropti</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		{% include "search_mode/styles.html" %}
-    </head>
+{% load staticfiles i18n %}
+<!DOCTYPE html>
+	{% include "search_mode/page_header.html" %}
 	<body>
 		{% include "search_mode/navbar.html" %}
 
-		<!-- Results Container -->
-		<div id="div_search_results" class="container-fluid bg-2 text-center">
-		  <h3 class="margin">Wynik wyszukiwania:</h3>
-		  <div class="row">
-			<div class="col-sm-3">
-			
+		<section id="main" class="wrapper">
+			<div class="inner">
+				<header class="align-center">
+					<h2>Wyniki wyszukiwania dla hasła: {{search_item}}</h2>
+				</header>
+
+				<!-- Content -->
+				<p>{{results|safe}}</p>
+				
 			</div>
-			<div class="col-sm-6"> 
-				<center>{{results|safe}}</center>
-			</div>
-			<div class="col-sm-3"></div>
-		  </div>
-		</div>
+		</section>
 		
 	</body>
 </html>

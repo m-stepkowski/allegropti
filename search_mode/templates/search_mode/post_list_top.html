@@ -1,9 +1,15 @@
-﻿{% block wpisy %}
+{% load staticfiles %}
+{% block wpisy %}
 	{% for post in posts %}
-		<div class="col-sm-4">
-			<h4><a href="post/{{post.id}}">{{ post.title }}</a></h4>
-			<p>{{ post.text|linebreaksbr }}</p>
+		<div class="flex-item box">
+			<div class="image fit">
+				<img src="{% static 'images/pic02.jpg' %}" alt="" />
+			</div>
+			<div class="content">
+				<h3><a href="post/{{post.id}}">{{ post.title }}</a></h3>
+				<p>{{post.published_date|date:'Y-m-d'}}</p>
+				<p>{{ post.text|linebreaksbr }}</p>
+			</div>
 		</div>
 	{% endfor %}
 {% endblock wpisy %}
-		

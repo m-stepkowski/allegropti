@@ -1,49 +1,85 @@
-﻿{% load staticfiles %}
-<html>
-    <head>
-        <title>Allegropti</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		{% include "search_mode/styles.html" %}
-    </head>
+{% load staticfiles i18n %}
+<!DOCTYPE html>
+<!--
+	Intensify by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+    {% include "search_mode/page_header.html" %}
     <body>
 		{% include "search_mode/navbar.html" %}
-		
-		<!-- First Container -->
-		<div id="div_cel" class="container-fluid bg-1 text-center">
-		  <h3 class="margin">Cel serwisu</h3>
-		  <img src="{% static 'images/code_photo.jpg' %}" class="img-responsive img-circle margin" style="display:inline" width="350" height="350">
-		  <h4>Przy pomocy naszego algorytmu, dowiesz się kiedy i za jaką kwotę powienieneś wystawić swój przedmiot na Allegro!</h4>
-		</div>
-		
-		<!-- Second Container -->
-		<div id="div_opti" class="container-fluid bg-2 text-center">
-		  <h3 class="margin">Sprawdź przedmiot</h3>
-		  <div class="row">
-			<div class="col-sm-3">
-			
-			</div>
-			<div class="col-sm-6"> 
-				<form action="/search/" method="post">
-					{% csrf_token %}
-					<input type="text" class="form-control" name="search_item" placeholder="Wprowadź nazwę przedmiotu..">
-					<br>
-					<div id="div_but_item_search">
-						<input id="but_item_search" class="btn btn-default" onclick="form_post(this);" value="Wyszukaj" />
+		<!-- Banner -->
+			<section id="banner" >
+				<div class="content">
+					<h1>Przyspiesz swoją sprzedaż!</h1>
+					<p>Optymalizując cenę początkową i moment wystawienia aukcji dopasowujesz się do klienta,<br /> przez co szanse na sprzedanie przedmiotu rosną kilku-, a nawet kilkunastokrotnie.
+					<ul class="actions">
+						<li><a href="#one" class="button scrolly">Co nas wyróżnia?</a></li>
+					</ul>
+				</div>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="wrapper">
+				<div class="inner flex flex-3">
+					<div class="flex-item left">
+						<div>
+							<h3>Wygoda</h3>
+							<p>Przeszukanie bazy danych przedmiotów<br /> odbywa się bezpośrednio na jednej stronie.</p>
+						</div>
+						<div>
+							<h3>Archiwum</h3>
+							<p>Wyszukiwanie odbywa się także<br /> w archiwalnych, zakończonych aukcjach (do 2 m-c).</p>
+						</div>
 					</div>
-				</form>
+					<div class="flex-item image fit round">
+						<img src="{% static 'images/pic01.jpg' %}" alt="" />
+					</div>
+					<div class="flex-item right">
+						<div>
+							<h3>Mobilność</h3>
+							<p>Wykorzystanie aplikacji możliwe jest<br /> także na urządzeniach mobilnych.</p>
+						</div>
+						<div>
+							<h3>Niskie koszty</h3>
+							<p>Pierwsze pięć wyszukań jest darmowe,<br /> następne zaś są dostępne w preferencyjnych cenach.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		<!-- Two -->
+			<section id="two" class="wrapper style1 special">
+				<div class="inner">
+					<h2>Optymalizuj</h2>
+					<figure>
+					    <form action="/search/" method="post">
+					    	{% csrf_token %}
+							<div style="text-align:center;">
+								<div class="6u 12u$(small)" style="display: inline-block;">
+									<input type="text" name="search_item" id="query" value="" placeholder="Wprowadź przedmiot..." />
+								</div>
+								<div class="2u$ 12u$(small)" style="display: inline-block;">
+									<input type="submit" value="Wyszukaj" class="button special" />
+								</div>
+							</div>
+						</form>
+					    <footer>
+					        <cite class="company">Pamiętaj, że wydajność wyszukiwania zależy także od serwerów firmy zewnętrznej</cite>
+					    </footer>
+					</figure>
+				</div>
+			</section>
+
+		<!-- Three -->
+			<section id="three" class="wrapper">
+			<div class="inner" style="text-align:center;">
+				<h1>Aktualności</h1>
 			</div>
-			<div class="col-sm-3"></div>
-		  </div>
-		</div>
-		
-		<!-- Third Container (Grid) -->
-		<div id="div_newsy" class="container-fluid bg-3 text-center">    
-		  <h3 class="margin">Ostatnie newsy</h3><br>
-		  <div class="row">
-			{% include "search_mode/post_list_top.html" %}
-		  </div>
-		</div>
+				<div class="inner flex flex-3">
+					{% include "search_mode/post_list_top.html" %}
+				</div>
+			</section>
 			
 		{% include "search_mode/footer.html" %}
 		

@@ -133,7 +133,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 #STATIC_ROOT = os.path.join(BASE_DIR, 'public', 'static')
-#STATIC_ROOT = '/Users/maciek/magrad/public/static'
+#STATIC_ROOT = '/Users/maciek/projekty/allegropti/allegropti/public/static'
 
 STATIC_ROOT = ''
 
@@ -141,4 +141,5 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "public", "static"),
 )
 
+SITE_TITLE = 'Allegropti - sprzedawaj tak, jak lubisz!'
 

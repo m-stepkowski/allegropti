@@ -1,31 +1,31 @@
-﻿{% block navbar %}
+{% block navbar %}
+	<!-- Header -->
+	<header id="header">
+		<nav class="left">
+			<a href="#menu"><span>Menu</span></a>
+		</nav>
+		<a href="http://{{ request.META.HTTP_HOST }}" class="logo">allegropti</a>
+		<nav class="right">
+			{% if user.is_authenticated %}
+				<p>Witaj, {{ user.username }} <a href="/admin/logout/">(wyloguj się)</a></p>
+		    {% else %}
+      			<p><a href="/admin/logout/" class="button alt">Zaloguj</a></p>
+		    {% endif %}
+		</nav>
+	</header>
 
-	<nav class="navbar navbar-default">
-	  <div class="container">
-		<div class="navbar-header">
-		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>                        
-		  </button>
-		  <a class="navbar-brand">Allegropti</a>
-		</div>
-
-		
-		<div class="collapse navbar-collapse" id="myNavbar">
-		  <ul class="nav navbar-nav navbar-right">
-		  {% if hp == 1 %}
-			<li><a href="#div_cel">Cel</a></li>
-			<li><a href="#div_opti">Algorytm</a></li>
-			<li><a href="#div_newsy">Newsy</a></li>
-		  {% endif %}
-		  {% if hp != 1 %}
-		  	<li><a href="http://{{ request.META.HTTP_HOST }}">Powrót do strony głównej</a></li>
-		  {% endif %}
-		  </ul>
-		</div>
-
-	  </div>
+	<!-- Menu -->
+	<nav id="menu">
+		<ul class="links">
+			<li><a href="http://{{ request.META.HTTP_HOST }}">Strona główna</a></li>
+			{% if user.is_authenticated %}
+				{% if user.is_superuser %}
+				<li><a href="/admin/">Panel administracyjny</a></li>
+				{% endif %}
+		    {% endif %}
+		</ul>
+		<ul class="actions vertical">
+			<li><a href="#" class="button fit">Login</a></li>
+		</ul>
 	</nav>
-		
 {% endblock %}
