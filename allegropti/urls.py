@@ -19,7 +19,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    url(r'^neverland/', include(admin.site.urls)),
     url(r'', include('search_mode.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^accounts/profile/', include('search_mode.urls'))
