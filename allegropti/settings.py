@@ -37,7 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'search_mode'
+    'search_mode',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -50,12 +54,19 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 ROOT_URLCONF = 'allegropti.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "allauth", "templates"), os.path.join(BASE_DIR, "search_mode", "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,5 +152,14 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "public", "static"),
 )
 
+SITE_ID = 1
+
 SITE_TITLE = 'Allegropti - sprzedawaj tak, jak lubisz!'
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_USERNAME_MIN_LENGTH = 5
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+
+LOGIN_REDIRECT_URL = '/'
 

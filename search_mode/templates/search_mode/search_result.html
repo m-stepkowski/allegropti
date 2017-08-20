@@ -1,20 +1,23 @@
+{% extends "search_mode/base.html" %}
+
 {% load staticfiles i18n %}
-<!DOCTYPE html>
-	{% include "search_mode/page_header.html" %}
-	<body>
-		{% include "search_mode/navbar.html" %}
 
-		<section id="main" class="wrapper">
-			<div class="inner">
-				<header class="align-center">
-					<h2>Wyniki wyszukiwania dla hasła: {{search_item}}</h2>
-				</header>
+{% block content %}
 
-				<!-- Content -->
-				<p>{{results|safe}}</p>
-				
-			</div>
-		</section>
+{% if user.is_authenticated %}
+
+<section id="main" class="wrapper">
+	<div class="inner">
+		<header class="align-center">
+			<h2>Wyniki wyszukiwania dla hasła: {{search_item}}</h2>
+		</header>
+
+		<!-- Content -->
+		<p>{{results|safe}}</p>
 		
-	</body>
-</html>
+	</div>
+</section>
+
+{% endif %}
+		
+{% endblock %}

@@ -1,30 +1,29 @@
+{% extends "search_mode/base.html" %}
+
 {% load staticfiles i18n %}
-<!DOCTYPE html>
-	{% include "search_mode/page_header.html" %}
-	<body>
-		{% include "search_mode/navbar.html" %}
 
-		<section id="main" class="wrapper">
-			<div class="inner">
-				<header class="align-center">
-					<h2>{{post.title}}</h2>
-					<p>{{post.published_date|date:'Y-m-d H:i'}}</p>
-				</header>
+{% block content %}
 
-				<!-- Content -->
-				<p>{{post.text|linebreaksbr}}</p>
+<section id="main" class="wrapper">
+	<div class="inner">
+		<header class="align-center">
+			<h2>{{post.title}}</h2>
+			<p>{{post.published_date|date:'Y-m-d H:i'}}</p>
+		</header>
 
-				{% if user.is_authenticated %}
-					{% if user.is_superuser %}
-					<div class="inner align-center">
-						<a href="{% url 'admin:search_mode_post_change' post.id %}" class="button small">Edytuj</a>
-						<a href="{% url 'admin:search_mode_post_delete' post.id %}" class="button small">Usuń</a>
-					</div>
-					{% endif %}
-			    {% endif %}
-				
+		<!-- Content -->
+		<p>{{post.text|linebreaksbr}}</p>
+
+		{% if user.is_authenticated %}
+			{% if user.is_superuser %}
+			<div class="inner align-center">
+				<a href="{% url 'admin:search_mode_post_change' post.id %}" class="button small">Edytuj</a>
+				<a href="{% url 'admin:search_mode_post_delete' post.id %}" class="button small">Usuń</a>
 			</div>
-		</section>
+			{% endif %}
+	    {% endif %}
 		
-	</body>
-</html>
+	</div>
+</section>
+		
+{% endblock %}
