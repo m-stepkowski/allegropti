@@ -7,11 +7,7 @@
 		<a href="http://{{ request.META.HTTP_HOST }}" class="logo">allegropti</a>
 		<nav class="right">
 			{% if user.is_authenticated %}
-				<p>Witaj, {{ user.username }} <a href="{% url 'account_logout' %}">(wyloguj się)</a>
-				{% if user.is_superuser %}
-					<a href="/neverland/" class="button alt">Administrator</a>
-				{% endif %}
-				</p>
+				<p>Witaj, {{ user.username }} <a href="{% url 'account_logout' %}">(wyloguj się)</a></p>
 		    {% else %}
 		    	<p>
 		    		<a href="{% url 'account_signup' %}" class="button alt">Zarejestruj</a>
