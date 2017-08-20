@@ -9,7 +9,7 @@
 			{% if user.is_authenticated %}
 				<p>Witaj, {{ user.username }} <a href="{% url 'account_logout' %}">(wyloguj się)</a>
 				{% if user.is_superuser %}
-					<a href="/admin/" class="button alt">Administrator</a>
+					<a href="/neverland/" class="button alt">Administrator</a>
 				{% endif %}
 				</p>
 		    {% else %}
@@ -27,7 +27,7 @@
 			<li><a href="http://{{ request.META.HTTP_HOST }}">Strona główna</a></li>
 			{% if user.is_authenticated %}
 				{% if user.is_superuser %}
-				<li><a href="/admin/">Panel administracyjny</a></li>
+				<li><a href="/neverland/">Panel administracyjny</a></li>
 				{% endif %}
 		    {% endif %}
 		</ul>

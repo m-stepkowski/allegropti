@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    #'allauth.socialaccount',
+    'allauth.socialaccount',
     'admin_honeypot',
 ]
 
@@ -163,4 +163,6 @@ ACCOUNT_USERNAME_MIN_LENGTH = 5
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 
 LOGIN_REDIRECT_URL = '/'
+
+ADMIN_HONEYPOT_EMAIL_ADMINS = False
 
