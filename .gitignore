@@ -3,6 +3,7 @@ __pycache__
 db.sqlite3
 .DS_Store
 .ebextensions
+static/
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

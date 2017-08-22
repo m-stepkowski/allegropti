@@ -144,13 +144,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join(BASE_DIR, 'public', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #STATIC_ROOT = '/Users/maciek/projekty/allegropti/allegropti/public/static'
 
-STATIC_ROOT = ''
+#STATIC_ROOT = ''
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "public", "static"),
+    os.path.join(BASE_DIR, 'public', 'static'),
 )
 
 SITE_ID = 1
