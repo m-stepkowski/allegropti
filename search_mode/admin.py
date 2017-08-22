@@ -9,6 +9,12 @@ class RequestAdmin(admin.ModelAdmin):
     readonly_fields = ('author', 'text', 'ip_address', 'user_agent', 'search_timestamp')
     search_fields = ('author', 'text', 'ip_address', 'user_agent')
 
+    def get_actions(self, request):
+    	actions = super(RequestAdmin, self).get_actions(request)
+    	if 'delete_selected' in actions:
+        	del actions['delete_selected']
+    	return actions
+
     def get_ip_address(self, instance):
         return '<a href="?ip_address=%(ip)s">%(ip)s</a>' % {'ip': instance.ip_address}
     get_ip_address.short_description = _('IP Address')
