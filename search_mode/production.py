@@ -16,6 +16,20 @@ class Allegro:
         self.country_id = 1  # Poland
         self.endpoint = 'https://webapi.allegro.pl/service.php?wsdl'
         self.client = Client(self.endpoint)
+
+    def get_categories(self):
+        # Pobieranie listy kategorii
+        cat_list = self.client.service.doGetCatsData(self.country_code, 0, self.api_key).catsList.item
+                   
+        # Tworzenie struktury i umieszczenie w niej id i nazwy kategorii
+        cats = []
+     
+        for cat in cat_list:
+            cats.append({'catId': cat.catId, 'catName': cat.catName})
+            
+        categories = pd.DataFrame(data=cats, columns=['catId', 'catName'])
+        
+        return categories
         
     def download_auctions(self, filtr_query, pageNumber):
         # Pobieram informacje o produktach (maksymalnie w jednej iteracji 1000 produktow)
@@ -71,14 +85,27 @@ class Allegro:
         tab = pd.DataFrame(data=wyniki_tab, columns=['ItemId', 'bidsCount', 'categoryId', 'conditionInfo', 
                                                    'priceType', 'priceValue'])
 
-        # Zmiana typu zmiennej z cena na 'float'
+        # Zmiana typu niektorych zmiennych na numeryczne
         tab['priceValue'] = tab['priceValue'].astype(float)
+        tab['bidsCount'] = tab['bidsCount'].astype(int)
+        tab['categoryId'] = tab['categoryId'].astype(int)
+        
+        # Wybranie aukcji, gdzie pojawily sie oferty kupna
+        tab = tab[tab.bidsCount > 0]
+
+        # Pobranie informacji o kategoriach
+        cats = self.get_categories()
+
+        # Laczenie danych z informacja o kategoriach
+        tab = pd.merge(left=tab, right=cats, left_on='categoryId', right_on='catId')
 
         # Pobranie informacji o sredniej cenie produktu w zaleznosci od typu ceny
-        srednia = tab[['priceType','priceValue']].groupby('priceType').mean().round(decimals=2)
+        #srednia = tab[['priceType','priceValue']].groupby('priceType').mean().round(decimals=2)
+        srednia = pd.pivot_table(tab, index=['categoryId', 'catName'], columns=['priceType'], values=['priceValue'], 
+                         aggfunc=[np.mean, len], fill_value=0, margins=True).round(decimals=2)
         
         # Utworzenie html z tabela ze srednimi
-        html = srednia.to_html(classes='table-hover')
+        html = srednia['mean'].to_html(classes='table-hover')
 
         # Zwracam html do pokazania na stronie
         return html
