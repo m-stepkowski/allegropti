@@ -4,6 +4,8 @@ import pandas as pd
 import numpy as np
 import math
 from suds.client import Client
+from .models import Result
+from StringIO import StringIO
 
 
 class Allegro:
@@ -100,9 +102,16 @@ class Allegro:
         tab = pd.merge(left=tab, right=cats, left_on='categoryId', right_on='catId')
 
         # Pobranie informacji o sredniej cenie produktu w zaleznosci od typu ceny
-        #srednia = tab[['priceType','priceValue']].groupby('priceType').mean().round(decimals=2)
         srednia = pd.pivot_table(tab, index=['categoryId', 'catName'], columns=['priceType'], values=['priceValue'], 
                          aggfunc=[np.mean, len], fill_value=0, margins=True).round(decimals=2)
+
+        # Przygotowanie wsadu z danymi do bazy danych odnosnie optymalizacji
+        content = tab[['categoryId','priceType','priceValue']].groupby(['categoryId', 'priceType']).mean().round(decimals=2).reset_index()
+        
+        # Zainsertowanie informacji z wynikami optymalizacji do modelu
+        for index, row in content.iterrows():
+            r = Result(search_text=fraza, price_type=str(row['priceType']) ,category_id=int(row['categoryId']), value=float(row['priceValue']))
+            r.save()
         
         # Utworzenie html z tabela ze srednimi
         html = srednia['mean'].to_html(classes='table-hover')

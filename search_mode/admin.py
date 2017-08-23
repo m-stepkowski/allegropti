@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
-from .models import Post, Request
+from .models import Post, Request, Result
 
 
 class RequestAdmin(admin.ModelAdmin):
@@ -27,6 +27,25 @@ class RequestAdmin(admin.ModelAdmin):
         return False
 
 
-admin.site.register(Post)
+class ResultAdmin(admin.ModelAdmin):
+    list_display = ('search_text', 'category_id', 'price_type', 'value', 'search_timestamp')
+    list_filter = ('search_timestamp',)
+    readonly_fields = ('search_text', 'category_id', 'price_type', 'value', 'search_timestamp')
+    search_fields = ('search_text', 'category_id', 'price_type')
 
+    def get_actions(self, request):
+        actions = super(ResultAdmin, self).get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
+admin.site.register(Post)
 admin.site.register(Request, RequestAdmin)
+admin.site.register(Result, ResultAdmin)
