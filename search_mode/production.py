@@ -126,7 +126,7 @@ class Allegro:
             final_result = pd.DataFrame(columns=['categoryId', 'priceType', 'priceValue'])
 
             # Wybranie rekordow dla kazdej kategorii z osobna i wybranie najlepszej opcji przy pomocy 
-            # algorytmu Multi-armed bandit
+            # algorytmu Multi-Armed Bandit
             for c in tab['categoryId'].unique():
                 tab_cat = tab[tab.categoryId == c]
                 # W optymalizacji bierzemy pod uwage tylko kategorie, gdzie jest wiecej niz jedna aukcja
