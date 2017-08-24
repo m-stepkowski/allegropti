@@ -21,6 +21,6 @@ def search_item(request):
 	si = request.POST['search_item']
 	# Search result
 	Polaczenie = Allegro()
-	sr = Polaczenie.wyszukaj(si)
+	sr = Polaczenie.search(si)
 	Request(author = request.user, text=si, ip_address=request.META.get('REMOTE_ADDR'), user_agent=request.META.get('HTTP_USER_AGENT'),).save()
 	return render(request, 'search_mode/search_result.html', {'search_item': si, 'results': sr, 'site_title': settings.SITE_TITLE})
