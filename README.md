@@ -57,14 +57,6 @@ Users can input search terms into the web interface. The application then:
 
 The output includes recommended listing prices for different categories and subcategories, helping sellers optimize their pricing strategy on the Allegro platform.
 
-## Setup and Installation
-
-[Include instructions for setting up the project, including database configuration, API key setup, and any necessary environment variables.]
-
-## Contributing
-
-[Provide guidelines for how others can contribute to the project.]
-
 ## License
 
 MIT
