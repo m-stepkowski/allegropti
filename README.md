@@ -2,7 +2,7 @@
 
 ## Overview
 
-This web application serves as an advanced search engine for the Allegro platform, utilizing the Multi-Armed Bandit (MAB) algorithm to optimize search results. It's designed to help users find the best listing prices for products across various categories on Allegro, Poland's leading e-commerce platform. The application has been developed as a part of the master's thesis authored by (me; Maciej Stepkowski)[https://linkedin.com/in/maciej-stepkowski-91b4b11b0] written at Warsaw School of Economics.
+This web application serves as an advanced search engine for the Allegro platform, utilizing the Multi-Armed Bandit (MAB) algorithm to optimize search results. It's designed to help users find the best listing prices for products across various categories on Allegro, Poland's leading e-commerce platform. The application has been developed as a part of the master's thesis authored by [me; Maciej Stepkowski](https://linkedin.com/in/maciej-stepkowski) written at Warsaw School of Economics.
 
 ## Functionality
 
